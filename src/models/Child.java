@@ -12,15 +12,15 @@ public class Child extends Person {
     public int getPriorityForSpeachLessons() {
         return priorityForSpeachLessons;
     }
+    public Nationality getNationality() {
+        return nationality;
+    }
     //Set funkcijas
     public void setAlergies(String alergies) {
         this.alergies = alergies;
     }
     public void setPriorityForSpeachLessons(int priorityForSpeachLessons) {
         this.priorityForSpeachLessons = priorityForSpeachLessons;
-    }
-    public Nationality getNationality() {
-        return nationality;
     }
     public void setNationality(Nationality nationality) {
         this.nationality = nationality;

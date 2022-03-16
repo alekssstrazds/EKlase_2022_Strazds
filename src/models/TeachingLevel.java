@@ -1,4 +1,4 @@
-package models.enums;
+package models;
 
 public enum TeachingLevel {
     TODDLER, YOUNGCHILD, PRESCHOOL;

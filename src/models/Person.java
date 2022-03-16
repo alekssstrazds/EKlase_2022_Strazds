@@ -1,5 +1,7 @@
 package models;
 
+import java.sql.Date;
+
 public class Person {
     //Mainīgie
     private String name;
