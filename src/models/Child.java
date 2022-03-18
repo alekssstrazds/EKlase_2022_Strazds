@@ -4,6 +4,7 @@ public class Child extends Person {
     //Mainīgie
     private String alergies;
     private int priorityForSpeachLessons;
+
     private Nationality nationality;
     //Get funkcijas
     public String getAlergies() {
@@ -23,28 +24,25 @@ public class Child extends Person {
         this.priorityForSpeachLessons = priorityForSpeachLessons;
     }
     public void setNationality(Nationality nationality) {
-        this.nationality = nationality;
+        if(nationality != null) {
+            this.nationality = nationality;
+        } else this.nationality = Nationality.LATVIAN;
     }
     //Constructor
     Child() {
-        setName("None");
-        setSurname("None");
-        setPersonalCode("None");
+        super();
         setAlergies("None");
         setPriorityForSpeachLessons(0);
-        setNationality(nationality);
+        setNationality(Nationality.LATVIAN);
     }
     Child(String name, String surname, String personalCode, String alergies, int priorityForSpeachLessons, Nationality nationality) {
-        setName(name);
-        setSurname(surname);
-        setPersonalCode(personalCode);
+        super(name, surname, personalCode);
         setAlergies(alergies);
         setPriorityForSpeachLessons(priorityForSpeachLessons);
         setNationality(nationality);
     }
     //toString funkcija
-    @Override
     public String toString() {
-        return "Child [alergies=" + alergies + ", nationality=" + nationality + ", priorityForSpeachLessons=" + priorityForSpeachLessons + "]";
+        return super.toString() + alergies + " " + nationality + " " + priorityForSpeachLessons;
     }
 }

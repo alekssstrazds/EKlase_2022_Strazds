@@ -1,7 +1,5 @@
 package models;
 
-import java.sql.Date;
-
 public class Person {
     //Mainīgie
     private String name;
@@ -31,7 +29,7 @@ public class Person {
     Person() {
         setName("None");
         setSurname("None");
-        setPersonalCode("None");
+        setPersonalCode("070380-21655");
     }
     Person(String name, String surname, String personalCode) {
         setName(name);
@@ -39,8 +37,7 @@ public class Person {
         setPersonalCode(personalCode);
     }
     //toString funkcija
-    @Override
     public String toString() {
-        return "Person [name=" + name + ", personalCode=" + personalCode + ", surname=" + surname + "]";
+        return name + " " + surname + " "  + personalCode;
     }
 }

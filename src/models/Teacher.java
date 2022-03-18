@@ -13,23 +13,17 @@ public class Teacher extends Employee {
     }
     //Constructor
     Teacher() {
-        setName("None");
-        setSurname("None");
-        setPersonalCode("None");
-        //setContractDate();
-        setTeachingLevel(teachingLevel);
+        super();
+        setContractDate(new Date());
+        setTeachingLevel(TeachingLevel.PRESCHOOL);
     }
     Teacher(String name, String surname, String personalCode, Date contractDate, TeachingLevel teachingLevel) {
-        setName(name);
-        setSurname(surname);
-        setPersonalCode(personalCode);
-        setContractDate(contractDate);
+        super(name, surname, personalCode, contractDate);
         setTeachingLevel(teachingLevel);
     }
     //toString funkcija
-    @Override
     public String toString() {
-        return "Teacher [teachingLevel=" + teachingLevel + "]";
+        return super.toString() + getContractDate() + " " + teachingLevel;
     }
     
 }

@@ -32,20 +32,15 @@ public class Employee extends Person {
     }
     //Constructor
     Employee() {
-        setName("None");
-        setSurname("None");
-        setPersonalCode("None");
+        super();
         setContractDate(contractDate);
     }
     Employee(String name, String surname, String personalCode, Date contractDate) {
-        setName(name);
-        setSurname(surname);
-        setPersonalCode(personalCode);
+        super(name, surname, personalCode);
         setContractDate(contractDate);
     }
     //toString funkcija
-    @Override
     public String toString() {
-        return "Employee [contractDate=" + contractDate + ", contractNumber=" + contractNumber + ", employeeId=" + employeeId + "]";
+        return super.toString() + " "  + contractDate + " " + contractNumber + " " + employeeId ;
     }   
 }
