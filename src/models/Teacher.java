@@ -9,15 +9,17 @@ public class Teacher extends Employee {
     }
     //Set funkcijas
     public void setTeachingLevel(TeachingLevel teachingLevel) {
-        this.teachingLevel = teachingLevel;
+        if(teachingLevel != null) {
+            this.teachingLevel = teachingLevel;
+        } else this.teachingLevel = TeachingLevel.PRESCHOOL;
     }
     //Constructor
-    Teacher() {
+    public Teacher() {
         super();
         setContractDate(new Date());
         setTeachingLevel(TeachingLevel.PRESCHOOL);
     }
-    Teacher(String name, String surname, String personalCode, Date contractDate, TeachingLevel teachingLevel) {
+    public Teacher(String name, String surname, String personalCode, Date contractDate, TeachingLevel teachingLevel) {
         super(name, surname, personalCode, contractDate);
         setTeachingLevel(teachingLevel);
     }

@@ -7,53 +7,54 @@ public class Group {
     private short groupStartYear;
     private String title;
     private Teacher teacher;
-    private static ArrayList<Child> allChildrenInGroup = new ArrayList<>();
+    private ArrayList<Child> allChildrenInGroup = new ArrayList<>();
     // Get funkcijas
     public ArrayList<Child> getAllChildrenInGroup() {
         return allChildrenInGroup;
     }
-
     public short getGroupStartYear() {
         return groupStartYear;
     }
-
     public String getTitle() {
         return title;
     }
-
     public Teacher getTeacher() {
         return teacher;
     }
-
     // Set funkcijas
-    public void setAllChildrenInGroup(ArrayList<Child> allChild) {
-        Group.allChildrenInGroup = allChild;
+    public void setAllChildrenInGroup(ArrayList<Child> allChildrenInGroup) {
+        if(allChildrenInGroup != null) {
+            this.allChildrenInGroup = allChildrenInGroup;
+        } else this.allChildrenInGroup = new ArrayList<Child>();
     }
-
     public void setGroupStartYear(short groupStartYear) {
-        this.groupStartYear = groupStartYear;
+        if(groupStartYear >= 2020 && groupStartYear < 2023) {
+            this.groupStartYear = groupStartYear;
+        } else this.groupStartYear = 0;
     }
-
     public void setTitle(String title) {
-        this.title = title;
+        if(title != null && title.matches("[A-ZĒŪĪĀŠĢĶĻŅČŽ]{1}[\\s\\da-zēūīļķģšāžčņA-ZĒŪĪĀŠĢĶĻŅČŽ]+")) {
+            this.title = title;
+        } else this.title = "notknown";
     }
-
     public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+        if(teacher != null) {
+            this.teacher = teacher;
+        } else this.teacher = new Teacher();
     }
     // Constructor
-    Group() {
+    public Group() {
         setGroupStartYear((short) 0);
         setTitle("None");
         setTeacher(new Teacher());
     }
-    Group(short groupStartYear, String title, Teacher teacher) {
+    public Group(short groupStartYear, String title, Teacher teacher) {
         setGroupStartYear(groupStartYear);
         setTitle(title);
         setTeacher(teacher);
     }
-    /*//C - create
-    private static boolean addChildInGroup(Child allChild) {
+    //C - create
+    /*private static boolean addChildInGroup(Child allChild) {
         allChild = new Child();
         if(allChild.contains(allChild)) {
             return false;

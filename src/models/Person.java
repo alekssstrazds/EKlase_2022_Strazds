@@ -17,21 +17,28 @@ public class Person {
     }
     //set funkcijas
     public void setName(String name) {
-        this.name = name;
+        if(name != null && name.matches("[A-ZĒŪĪĀŠĢĶĻŅČŽ]{1}[a-zēūīļķģšāžčņ]+\\s?([A-ZĒŪĪĀŠĢĶĻŅČŽ]{1}[a-zēūīļķģšāžčņ]+)?")) {
+            this.name = name;
+        } else this.name = "notknown";
     }
     public void setSurname(String surname) {
-        this.surname = surname;
+        if(surname != null && surname.matches("[A-ZĒŪĪĀŠĢĶĻŅČŽ]{1}[a-zēūīļķģšāžčņ]+[-]?([A-ZĒŪĪĀŠĢĶĻŅČŽ]{1}[a-zēūīļķģšāžčņ]+)?"))
+        {
+            this.surname = name;
+        } else this.surname = "notknown";
     }
     public void setPersonalCode(String personalCode) {
-        this.personalCode = personalCode;
+        if(personalCode != null && personalCode.matches("[0-9]{6}[-][0-9]{5}")) {
+            this.personalCode = personalCode;
+        } else this.name = "notknown"; 
     }
     //Constructor
-    Person() {
+    public Person() {
         setName("None");
         setSurname("None");
-        setPersonalCode("070380-21655");
+        setPersonalCode("notknown");
     }
-    Person(String name, String surname, String personalCode) {
+    public Person(String name, String surname, String personalCode) {
         setName(name);
         setSurname(surname);
         setPersonalCode(personalCode);

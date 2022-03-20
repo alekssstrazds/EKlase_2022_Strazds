@@ -1,4 +1,8 @@
 package models;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Employee extends Person {
@@ -14,10 +18,22 @@ public class Employee extends Person {
         return employeeId;
     }
     public Date getContractDate() {
-        return contractDate;
-    }
+        SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date date = dateformat.parse("24/03/2022");
+            if(contractDate.after(date)) {
+                return contractDate;
+            }
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    } 
     public String getContractNumber() {
-        return contractNumber;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(contractDate);
+        int year = calendar.get(Calendar.YEAR);
+        return year + "_" + employeeId + "_" + super.getName().substring(0, 1) + "_" + super.getSurname().substring(0, 1);
     }
     //Set funkcijas
     public void setEmployeeId() {
@@ -28,14 +44,16 @@ public class Employee extends Person {
         this.contractDate = contractDate;
     }
     public void setContractNumber(String contractNumber) {
-        this.contractNumber = contractNumber;
+        if(contractNumber != null && contractNumber.matches("[2][0][2]{2}[_][0-9]+[_][A-ZĒŪĪĀŠĢĶĻŅČŽ][_][A-ZĒŪĪĀŠĢĶĻŅČŽ]")) {
+            this.contractNumber = contractNumber;
+        } else  this.contractNumber = "notknown";
     }
     //Constructor
-    Employee() {
+    public Employee() {
         super();
         setContractDate(contractDate);
     }
-    Employee(String name, String surname, String personalCode, Date contractDate) {
+    public Employee(String name, String surname, String personalCode, Date contractDate) {
         super(name, surname, personalCode);
         setContractDate(contractDate);
     }
