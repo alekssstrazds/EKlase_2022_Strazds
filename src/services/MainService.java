@@ -17,10 +17,31 @@ public class MainService {
         LocalDate localDate1 = LocalDate.of(2022, 03, 25);
         Date dDate1 = Date.valueOf(localDate1);
         Teacher t = new Teacher();
+        Child c = new Child();
+        Group g = new Group();
+        Group g1 = new Group();
+        Child c1 = new Child();
+        allChildren.add(c);
+        allGroups.add(g);
+        allGroups.add(g1);
+        allChildren.add(c1);
+        
         addNewTeacher("Mafin", "Korkov", "874789-54792", dDate1, TeachingLevel.YOUNGCHILD);
         addSpeachTherapist("Ron", "Terkov", "164857-57465", dDate1, "Nekas ipass tikai prakse");
         addNewChild("Thomas", "Freeman", "187568-54875", "", 5, Nationality.LITHUANIAN);
         addNewGroup((short) 2022, "Bitites", t);
+        //TODO funkcija nestrādā
+        //System.out.println(removeChildFromGroup(c, g));
+        //Funkcija strādā
+        //addChildInGroup(c, g);
+        g1.addChildInGroup(c);
+        System.out.println(g.getAllChildrenInGroup());
+        System.out.println(g1.getAllChildrenInGroup());
+        //Funkcija change and remove strādā
+        //changeGroup(c, g1, g);
+        //removeChildFromGroup(c, g1);
+        System.out.println(g.getAllChildrenInGroup());
+        System.out.println(g1.getAllChildrenInGroup());
     }
     public static boolean addNewTeacher(String name, String surname, String personalCode, Date contractDate, TeachingLevel teachingLevel) {
         Teacher teacher = new Teacher(name, surname, personalCode, contractDate, teachingLevel);
@@ -80,9 +101,9 @@ public class MainService {
         return false;
     }
     public static boolean removeSpeachTherapistByPersonalCode(String personalCode) {
-        for(Employee employee : allEmployees) {
-            if(employee.getPersonalCode() == personalCode) {
-                allEmployees.remove(employee);
+        for(Employee speachTherapist : allEmployees) {
+            if(speachTherapist.getPersonalCode() == personalCode) {
+                allEmployees.remove(speachTherapist);
                 return true;
             }
         }
@@ -95,9 +116,9 @@ public class MainService {
                 for(Group group : allGroups) {
                     if(group.getAllChildrenInGroup().contains(child)) {
                         removeChildFromGroup(child, group);
+                        return true;
                     }
                 }
-                return true;
             }
         }
         return false;
@@ -118,12 +139,28 @@ public class MainService {
                 return true;
             }
         }
-        return false; 
+        return false;
     }
     public static boolean removeChildFromGroup(Child child, Group group) {
+        for(Group groups : allGroups) {
+            if(groups.equals(group) && groups.getAllChildrenInGroup().contains(child)) {
+                groups.removeChildInGroup(child);
+            }
+        }
         return false;
     }
     public static boolean changeGroup(Child child, Group group1, Group group2) {
+        for(Child children : allChildren) {
+            if(children.equals(child)) {
+                for(Group groups : allGroups) {
+                    if(groups.equals(group1)) {
+                        addChildInGroup(child, group2);
+                        removeChildFromGroup(child, group1);
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 
