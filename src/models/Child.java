@@ -3,7 +3,7 @@ package models;
 public class Child extends Person {
     //Mainīgie
     private String alergies;
-    int priorityForSpeachLessons;
+    private int priorityForSpeachLessons;
     private Nationality nationality;
 
     //Get funkcijas
@@ -20,7 +20,7 @@ public class Child extends Person {
     public void setAlergies(String alergies) {
         if(alergies != null && alergies.matches("[;A-ZĒŪĪĀŠĢĶĻŅČŽ]{1}[\\s\\da-zēūīļķģšāžčņA-ZĒŪĪĀŠĢĶĻŅČŽ]+")) {
             this.alergies = alergies;
-        } else this.alergies = "no allergies";
+        } else this.alergies = "No Allergies";
     }
     public void setPriorityForSpeachLessons(int priorityForSpeachLessons) {
         if(priorityForSpeachLessons >= 1 && priorityForSpeachLessons <= 6) {
@@ -35,7 +35,7 @@ public class Child extends Person {
     //Constructor
     public Child() {
         super();
-        setAlergies("None");
+        setAlergies(" ");
         setPriorityForSpeachLessons(0);
         setNationality(Nationality.LATVIAN);
     }

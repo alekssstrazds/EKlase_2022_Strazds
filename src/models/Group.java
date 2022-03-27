@@ -9,7 +9,9 @@ public class Group {
     private Teacher teacher;
     private ArrayList<Child> allChildrenInGroup = new ArrayList<>();
     // Get funkcijas
-    public ArrayList<Child> getAllChildrenInGroup() {
+    public ArrayList<Child> getAllChildrenInGroup() 
+    {
+        //return new ArrayList<>(allChildrenInGroup);
         return allChildrenInGroup;
     }
     public short getGroupStartYear() {
@@ -33,7 +35,7 @@ public class Group {
         } else this.groupStartYear = 0;
     }
     public void setTitle(String title) {
-        if(title != null && title.matches("[A-ZĒŪĪĀŠĢĶĻŅČŽ]{1}[\\s\\da-zēūīļķģšāžčņA-ZĒŪĪĀŠĢĶĻŅČŽ]+")) {
+        if(title != null && title.matches("[A-ZĒŪĪĀŠĢĶĻŅČŽa-zēūīļķģšāžčņ]+\s?([A-ZĒŪĪĀŠĢĶĻŅČŽa-zēūīļķģšāžčņ]+)?")) {
             this.title = title;
         } else this.title = "notknown";
     }
@@ -45,7 +47,7 @@ public class Group {
     // Constructor
     public Group() {
         setGroupStartYear((short) 0);
-        setTitle("None");
+        setTitle("No Title");
         setTeacher(new Teacher());
     }
     public Group(short groupStartYear, String title, Teacher teacher) {
@@ -53,26 +55,19 @@ public class Group {
         setTitle(title);
         setTeacher(teacher);
     }
-    //C - create
-    /*private static boolean addChildInGroup(Child allChild) {
-        allChild = new Child();
-        if(allChild.contains(allChild)) {
+    public boolean addChildInGroup(Child child) {
+        if(allChildrenInGroup.contains(child)) {
             return false;
-        } else allCourses.add(course);
+        } else allChildrenInGroup.add(child);
         return true;
     }
-    //D - delete
-    private static boolean removeChildInGroup(Child person) {
-        if(courseId >= 1000 & courseId < 10000) {
-            for (Course course : allCourses) {
-                if(course.getId() == courseId) {
-                    allCourses.remove(course);
-                    return true;
-                }
-            }
+    public boolean removeChildInGroup(Child child) {
+        if(allChildrenInGroup.contains(child)) {
+            allChildrenInGroup.remove(child);
+            return true;
         }
-        return false;
-    }*/
+        return true;
+    }
     //toString funckija
     public String toString() {
         return groupStartYear + " " + title;

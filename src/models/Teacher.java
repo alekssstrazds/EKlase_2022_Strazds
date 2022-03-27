@@ -16,7 +16,7 @@ public class Teacher extends Employee {
     //Constructor
     public Teacher() {
         super();
-        setContractDate(new Date());
+        setContractDate(new Date(0));
         setTeachingLevel(TeachingLevel.PRESCHOOL);
     }
     public Teacher(String name, String surname, String personalCode, Date contractDate, TeachingLevel teachingLevel) {

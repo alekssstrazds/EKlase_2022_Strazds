@@ -1,29 +1,29 @@
 package models;
 
 import java.sql.Date;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.PriorityQueue;
 
 public class SpeachTherapist extends Employee implements Comparable<Child>{
     private String workingMethods;
-    private PriorityQueue<Child> allChildrenAtSpeachLessons = new PriorityQueue<>(5);
+    private static PriorityQueue<Child> allChildrenAtSpeachLessons = new PriorityQueue<>(5);
     //Get funkcijas
     public PriorityQueue<Child> getAllChildrenAtSpeachLessons() {
-        return allChildrenAtSpeachLessons;
+        return new PriorityQueue<>(allChildrenAtSpeachLessons);
     }
     public String getWorkingMethods() {
         return workingMethods;
     }
     //Set funkcijas
-    /*public void setAllChildrenAtSpeachLessons(PriorityQueue<Child> allChildrenAtSpeachLessons) {
+    public void setAllChildrenAtSpeachLessons(PriorityQueue<Child> allChildrenAtSpeachLessons) {
         //getPriorityForSpeachLessons()
-        if(allChildrenAtSpeachLessons.peek() != null) {
-            this.allChildrenAtSpeachLessons.add(getPriorityForSpeachLessons());
-        } else this.allChildrenAtSpeachLessons = new PriorityQueue<>(5);
-    }*/
+        if(allChildrenAtSpeachLessons != null) {
+            SpeachTherapist.allChildrenAtSpeachLessons = allChildrenAtSpeachLessons;
+        } else SpeachTherapist.allChildrenAtSpeachLessons = new PriorityQueue<>(5);
+    }
     public void setWorkingMethods(String workingMethods) {
-        this.workingMethods = workingMethods;
+        if(workingMethods != null && workingMethods.matches("[A-ZĒŪĪĀŠĢĶĻŅČŽa-zēūīļķģšāžčņ]+\s?([A-ZĒŪĪĀŠĢĶĻŅČŽa-zēūīļķģšāžčņ]+)?")) {
+            this.workingMethods = workingMethods;
+        } else workingMethods = "Unknown";  
     }
     //Constructor
     public SpeachTherapist() {
@@ -42,20 +42,16 @@ public class SpeachTherapist extends Employee implements Comparable<Child>{
     public int addChildByPriority(Child child) {
         return child.getPriorityForSpeachLessons();
     }
-    /*@Override
-    public int compareTo(Child o) {
-        if(getPriorityForSpeachLessons() == o.getPriorityForSpeachLessons()) {
-            return 0;
-        } else if(getPriorityForSpeachLessons() < o.getPriorityForSpeachLessons()){
-            return -1;
-        } else {
-            return +1;
-        }
-        return 0;
-    }*/
     @Override
     public int compareTo(Child o) {
-        // TODO Auto-generated method stub
+        for(Child child : allChildrenAtSpeachLessons) {
+            if(child.getPriorityForSpeachLessons() == o.getPriorityForSpeachLessons()) {
+                return 1;
+            }
+            else if(child.getPriorityForSpeachLessons() < o.getPriorityForSpeachLessons()) {
+                return -1;
+            }
+        }
         return 0;
-    }
+    }  
 }

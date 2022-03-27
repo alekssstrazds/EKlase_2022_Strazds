@@ -19,24 +19,23 @@ public class Person {
     public void setName(String name) {
         if(name != null && name.matches("[A-ZĒŪĪĀŠĢĶĻŅČŽ]{1}[a-zēūīļķģšāžčņ]+\\s?([A-ZĒŪĪĀŠĢĶĻŅČŽ]{1}[a-zēūīļķģšāžčņ]+)?")) {
             this.name = name;
-        } else this.name = "notknown";
+        } else this.name = "No Name";
     }
     public void setSurname(String surname) {
-        if(surname != null && surname.matches("[A-ZĒŪĪĀŠĢĶĻŅČŽ]{1}[a-zēūīļķģšāžčņ]+[-]?([A-ZĒŪĪĀŠĢĶĻŅČŽ]{1}[a-zēūīļķģšāžčņ]+)?"))
-        {
-            this.surname = name;
-        } else this.surname = "notknown";
+        if(surname != null && surname.matches("[A-ZĒŪĪĀŠĢĶĻŅČŽ]{1}[a-zēūīļķģšāžčņ]+[-]?([A-ZĒŪĪĀŠĢĶĻŅČŽ]{1}[a-zēūīļķģšāžčņ]+)?")) {
+            this.surname = surname;
+        } else this.surname = "No Surname";
     }
     public void setPersonalCode(String personalCode) {
         if(personalCode != null && personalCode.matches("[0-9]{6}[-][0-9]{5}")) {
             this.personalCode = personalCode;
-        } else this.name = "notknown"; 
+        } else this.name = "No PersonalCode"; 
     }
     //Constructor
     public Person() {
-        setName("None");
-        setSurname("None");
-        setPersonalCode("notknown");
+        setName(" ");
+        setSurname(" ");
+        setPersonalCode(" ");
     }
     public Person(String name, String surname, String personalCode) {
         setName(name);
@@ -45,6 +44,6 @@ public class Person {
     }
     //toString funkcija
     public String toString() {
-        return name + " " + surname + " "  + personalCode;
+        return name + " " + surname + " " + personalCode;
     }
 }
