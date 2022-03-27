@@ -21,17 +21,18 @@ public class MainService {
         Group g = new Group();
         Group g1 = new Group();
         Child c1 = new Child();
+        SpeachTherapist s = new SpeachTherapist();
         allChildren.add(c);
         allGroups.add(g);
         allGroups.add(g1);
         allChildren.add(c1);
+        allEmployees.add(s);
         
         addNewTeacher("Mafin", "Korkov", "874789-54792", dDate1, TeachingLevel.YOUNGCHILD);
         addSpeachTherapist("Ron", "Terkov", "164857-57465", dDate1, "Nekas ipass tikai prakse");
         addNewChild("Thomas", "Freeman", "187568-54875", "", 5, Nationality.LITHUANIAN);
         addNewGroup((short) 2022, "Bitites", t);
-        //TODO funkcija nestrādā
-        //System.out.println(removeChildFromGroup(c, g));
+        
         //Funkcija strādā
         //addChildInGroup(c, g);
         g1.addChildInGroup(c);
@@ -42,6 +43,9 @@ public class MainService {
         //removeChildFromGroup(c, g1);
         System.out.println(g.getAllChildrenInGroup());
         System.out.println(g1.getAllChildrenInGroup());
+        //System.out.println(allChildren);
+        s.addChildByPriority(c);
+        System.out.println(s.getAllChildrenAtSpeachLessons());
     }
     public static boolean addNewTeacher(String name, String surname, String personalCode, Date contractDate, TeachingLevel teachingLevel) {
         Teacher teacher = new Teacher(name, surname, personalCode, contractDate, teachingLevel);
@@ -145,6 +149,7 @@ public class MainService {
         for(Group groups : allGroups) {
             if(groups.equals(group) && groups.getAllChildrenInGroup().contains(child)) {
                 groups.removeChildInGroup(child);
+                return true;
             }
         }
         return false;
@@ -165,6 +170,7 @@ public class MainService {
     }
 
     public static boolean subcribeChildInSpeachLessonsByChildPersonalCode(String personalCode, SpeachTherapist speachTherapist) {
+        
         return false;
     }
 

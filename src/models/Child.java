@@ -36,7 +36,7 @@ public class Child extends Person {
     public Child() {
         super();
         setAlergies(" ");
-        setPriorityForSpeachLessons(0);
+        setPriorityForSpeachLessons(6);
         setNationality(Nationality.LATVIAN);
     }
     public Child(String name, String surname, String personalCode, String alergies, int priorityForSpeachLessons, Nationality nationality) {

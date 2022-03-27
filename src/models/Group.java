@@ -11,7 +11,6 @@ public class Group {
     // Get funkcijas
     public ArrayList<Child> getAllChildrenInGroup() 
     {
-        //return new ArrayList<>(allChildrenInGroup);
         return allChildrenInGroup;
     }
     public short getGroupStartYear() {
