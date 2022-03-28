@@ -3,7 +3,7 @@ package models;
 public class Child extends Person {
     //Mainīgie
     private String alergies;
-    private int priorityForSpeachLessons;
+    public int priorityForSpeachLessons;
     private Nationality nationality;
 
     //Get funkcijas

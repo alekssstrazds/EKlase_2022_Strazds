@@ -3,6 +3,8 @@ package services;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import models.*;
 
@@ -17,35 +19,56 @@ public class MainService {
         LocalDate localDate1 = LocalDate.of(2022, 03, 25);
         Date dDate1 = Date.valueOf(localDate1);
         Teacher t = new Teacher();
-        Child c = new Child();
+        Child c = new Child("Genadijs", "Alkalns", "581476-55482", "", 1, Nationality.ESTONIAN);
         Group g = new Group();
         Group g1 = new Group();
-        Child c1 = new Child();
+        Group g2 = new Group((short) 2020, "Subject", t);
+        Child c1 = new Child("Fricis", "Berniks", "145456-54715", "Nezinams sindroms", 3, Nationality.OTHER);
         SpeachTherapist s = new SpeachTherapist();
         allChildren.add(c);
         allGroups.add(g);
         allGroups.add(g1);
         allChildren.add(c1);
         allEmployees.add(s);
+        allEmployees.add(t);
         
         addNewTeacher("Mafin", "Korkov", "874789-54792", dDate1, TeachingLevel.YOUNGCHILD);
         addSpeachTherapist("Ron", "Terkov", "164857-57465", dDate1, "Nekas ipass tikai prakse");
-        addNewChild("Thomas", "Freeman", "187568-54875", "", 5, Nationality.LITHUANIAN);
+        //addNewChild("Thomas", "Freeman", "187568-54875", "", 5, Nationality.LITHUANIAN);
         addNewGroup((short) 2022, "Bitites", t);
         
         //Funkcija strādā
         //addChildInGroup(c, g);
-        g1.addChildInGroup(c);
-        System.out.println(g.getAllChildrenInGroup());
-        System.out.println(g1.getAllChildrenInGroup());
+        //g1.addChildInGroup(c);
+        allGroups.add(g2);
+        
+        g2.addChildInGroup(c1);
+        g2.addChildInGroup(c);
+        
+
+        System.out.println(g2.getAllChildrenInGroup());
+
         //Funkcija change and remove strādā
         //changeGroup(c, g1, g);
         //removeChildFromGroup(c, g1);
-        System.out.println(g.getAllChildrenInGroup());
-        System.out.println(g1.getAllChildrenInGroup());
+        //System.out.println(g.getAllChildrenInGroup());
+        //System.out.println(g1.getAllChildrenInGroup());
         //System.out.println(allChildren);
+        //s.addChildByPriority(c);
+        //s.addChildByPriority(c1);
+        //TODO funkcijas strada, bet nav pilniigas
+        //showAllTeachers();
+        //showAllSpeachTherapists();
+        //TODO funkcija nestrada
         s.addChildByPriority(c);
         System.out.println(s.getAllChildrenAtSpeachLessons());
+
+        //TODO funkcija strada, bet nav pilniiiga
+        //showAllChildrenInGroup(g1);
+        //Funkcija straada, bet prasa atjauninajumu
+        //showAllChildrenByGroupStartYear((short)0);
+        sortChildrenInGroupBySurname(g2);
+        //System.out.println(g2.getAllChildrenInGroup());
     }
     public static boolean addNewTeacher(String name, String surname, String personalCode, Date contractDate, TeachingLevel teachingLevel) {
         Teacher teacher = new Teacher(name, surname, personalCode, contractDate, teachingLevel);
@@ -174,23 +197,58 @@ public class MainService {
         return false;
     }
 
-    public void showAllTeachers() {
-
+    public static void showAllTeachers() {
+        for(Employee teachers : allEmployees) {
+            if(teachers instanceof Teacher) {
+                System.out.println(teachers);
+            }
+        }
     }
-    public void showAllSpeachTherapists() {
-
+    public static void showAllSpeachTherapists() {
+        for(Employee speachTherapists : allEmployees) {
+            if(speachTherapists instanceof SpeachTherapist) {
+                System.out.println(speachTherapists);
+            }
+        }
     }
-    public void showAllChildrenInGroup(Group group) {
-
-    }
+    public static void showAllChildrenInGroup(Group group) {
+        for(Group groups : allGroups) {
+            if(groups.equals(group)) {
+                System.out.println(groups.getAllChildrenInGroup());
+            }
+        }
+    } 
     public void showAllChildrenInSpeachLessonBySpeachTherapistPersonalCode(String personalCode) {
        
     }
-    public void showAllChildrenByGroupStartYear(short groupStartYear) {
-
+    public static void showAllChildrenByGroupStartYear(short groupStartYear) {
+        for(Group groups : allGroups) {
+            if(groups.getGroupStartYear() == groupStartYear) {
+                System.out.println(groups.getAllChildrenInGroup());
+            }
+        } 
     }
-    public void sortChildrenInGroupBySurname(Group group) {
-
+    public static void sortChildrenInGroupBySurname(Group group) {
+        MainService i = new MainService();
+        for(Group groups : allGroups) {
+            if(groups.equals(group)) {
+                i.sortLast(allChildren);
+            }
+        } 
+    }
+    public void sortLast(ArrayList<Child> allC) {
+        Collections.sort(allC, new Comparator<Child>() {
+            @Override
+            public int compare(Child o1, Child o2) {
+                String surname1 = o1.getSurname().substring(0);
+                String surname2 = o2.getSurname().substring(0);
+            
+                if(surname1.compareTo(surname2) > 0) {
+                    return 1;
+                } else return -1;
+            }
+        });
+        System.out.println(allC);
     }
     
     public String generateLunch() {

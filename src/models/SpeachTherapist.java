@@ -1,11 +1,12 @@
 package models;
 
 import java.sql.Date;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
-public class SpeachTherapist extends Employee implements Comparable<Child>{
+public class SpeachTherapist extends Employee implements Comparator<Child>{
     private String workingMethods;
-    private PriorityQueue<Child> allChildrenAtSpeachLessons = new PriorityQueue<>(5);
+    private PriorityQueue<Child> allChildrenAtSpeachLessons = new PriorityQueue<>();
     
     //Get funkcijas
     public PriorityQueue<Child> getAllChildrenAtSpeachLessons() {
@@ -40,21 +41,20 @@ public class SpeachTherapist extends Employee implements Comparable<Child>{
     }
     //addChildByPriority funkcija
     public int addChildByPriority(Child child) {
-        if(allChildrenAtSpeachLessons.size() >= 5 && allChildrenAtSpeachLessons.contains(child)) {
+        if(child.getPriorityForSpeachLessons() > 4 || allChildrenAtSpeachLessons.size() > 5) {
             return 0;
-        }  else allChildrenAtSpeachLessons.add(child);
+        } else allChildrenAtSpeachLessons.add(child);
         return allChildrenAtSpeachLessons.size();
     }
     @Override
-    public int compareTo(Child o) {
-        for(Child child : allChildrenAtSpeachLessons) {
-            if(child.getPriorityForSpeachLessons() > o.getPriorityForSpeachLessons()) {
-                return 1;
-            }
-            else if(child.getPriorityForSpeachLessons() == o.getPriorityForSpeachLessons()) {
-                return 0;
-            }
+    public int compare(Child o1, Child o2) {
+        //return o1.getPriorityForSpeachLessons() - o2.getPriorityForSpeachLessons();
+        if(o1.getPriorityForSpeachLessons() < o2.getPriorityForSpeachLessons()) {
+            return 1;
         }
-        return -1;
-    }  
+        else if(o1.getPriorityForSpeachLessons() > o2.getPriorityForSpeachLessons()) {
+            return -1;
+        }
+        return 0;
+    } 
 }
