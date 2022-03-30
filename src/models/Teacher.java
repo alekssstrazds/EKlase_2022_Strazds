@@ -25,7 +25,7 @@ public class Teacher extends Employee {
     }
     //toString funkcija
     public String toString() {
-        return super.toString() + getContractDate() + " " + teachingLevel;
+        return super.toString() + " " + teachingLevel;
     }
     
 }

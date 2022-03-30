@@ -3,14 +3,14 @@ package models;
 public class Child extends Person {
     //Mainīgie
     private String alergies;
-    public int priorityForSpeachLessons;
+    private int priorityForSpeachLessons;
     private Nationality nationality;
 
     //Get funkcijas
     public String getAlergies() {
         return alergies;
     }
-    public int getPriorityForSpeachLessons() {
+    public Integer getPriorityForSpeachLessons() {
         return priorityForSpeachLessons;
     }
     public Nationality getNationality() {
@@ -20,7 +20,7 @@ public class Child extends Person {
     public void setAlergies(String alergies) {
         if(alergies != null && alergies.matches("[;A-ZĒŪĪĀŠĢĶĻŅČŽ]{1}[\\s\\da-zēūīļķģšāžčņA-ZĒŪĪĀŠĢĶĻŅČŽ]+")) {
             this.alergies = alergies;
-        } else this.alergies = "No Allergies";
+        } else this.alergies = "NoAllergies";
     }
     public void setPriorityForSpeachLessons(int priorityForSpeachLessons) {
         if(priorityForSpeachLessons >= 1 && priorityForSpeachLessons <= 6) {
@@ -47,6 +47,6 @@ public class Child extends Person {
     }
     //toString funkcija
     public String toString() {
-        return super.toString() + alergies + " " + nationality + " " + priorityForSpeachLessons;
+        return super.toString() + " " + alergies + " " + priorityForSpeachLessons + " " + nationality;
     }
 }

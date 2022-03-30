@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.TimeZone;
 
 public class Employee extends Person {
     //Mainīgie
@@ -35,8 +34,8 @@ public class Employee extends Person {
     //TODO neatgriež default date
     public void setContractDate(Date contractDate) {
         String compareDate = "24/03/2022";
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        //Locale.setDefault(Locale.US);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); //Locale.getDefault());
         try {
             Date cDate = dateFormat.parse(compareDate);
             if(contractDate != null && contractDate.after(cDate)) {
@@ -49,7 +48,7 @@ public class Employee extends Person {
     public void setContractNumber(String contractNumber) {
         if(contractNumber != null && contractNumber.matches("[2][0][2]{2}[_][0-9]+[_][A-ZĒŪĪĀŠĢĶĻŅČŽ][_][A-ZĒŪĪĀŠĢĶĻŅČŽ]")) {
             this.contractNumber = contractNumber;
-        } else  this.contractNumber = "No ContractNumber";
+        } else  this.contractNumber = "NoContractNumber";
     }
     //Constructor
     //TODO konstruktors atgriežas hautiski
@@ -66,6 +65,6 @@ public class Employee extends Person {
     }
     //toString funkcija
     public String toString() {
-        return super.toString() + " "  + contractDate + " " + contractNumber + " " + employeeId ;
+        return super.toString() + " "  + contractDate + " " + employeeId;
     }
 }

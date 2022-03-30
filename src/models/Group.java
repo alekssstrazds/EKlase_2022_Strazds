@@ -46,7 +46,7 @@ public class Group {
     // Constructor
     public Group() {
         setGroupStartYear((short) 0);
-        setTitle("No Title");
+        setTitle("NoTitle");
         setTeacher(new Teacher());
     }
     public Group(short groupStartYear, String title, Teacher teacher) {
@@ -69,7 +69,7 @@ public class Group {
     }
     //toString funckija
     public String toString() {
-        return groupStartYear + " " + title;
+        return groupStartYear + " " + title + " " + teacher;
     }
     
 }

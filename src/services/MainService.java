@@ -24,17 +24,23 @@ public class MainService {
         Group g1 = new Group();
         Group g2 = new Group((short) 2020, "Subject", t);
         Child c1 = new Child("Fricis", "Berniks", "145456-54715", "Nezinams sindroms", 3, Nationality.OTHER);
-        SpeachTherapist s = new SpeachTherapist();
+        Child c2 = new Child();
+        Teacher t2 = new Teacher("Mafin", "Korkov", "874789-54792", dDate1, TeachingLevel.YOUNGCHILD);
+        SpeachTherapist s = new SpeachTherapist("Roberts", "Strelkovs", "1sd156as1d561as546", dDate1, "Leksikas attīstība jeb praktiskaas nodarbiibas");
+        SpeachTherapist s1 = new SpeachTherapist();
         allChildren.add(c);
+        allChildren.add(c2);
         allGroups.add(g);
         allGroups.add(g1);
         allChildren.add(c1);
         allEmployees.add(s);
+        allEmployees.add(s1);
         allEmployees.add(t);
+        allEmployees.add(t2);
         
-        addNewTeacher("Mafin", "Korkov", "874789-54792", dDate1, TeachingLevel.YOUNGCHILD);
+        //addNewTeacher("Mafin", "Korkov", "874789-54792", dDate1, TeachingLevel.YOUNGCHILD);
         addSpeachTherapist("Ron", "Terkov", "164857-57465", dDate1, "Nekas ipass tikai prakse");
-        //addNewChild("Thomas", "Freeman", "187568-54875", "", 5, Nationality.LITHUANIAN);
+        addNewChild("Thomas", "Freeman", "187568-54875", "", 5, Nationality.LITHUANIAN);
         addNewGroup((short) 2022, "Bitites", t);
         
         //Funkcija strādā
@@ -44,9 +50,18 @@ public class MainService {
         
         g2.addChildInGroup(c1);
         g2.addChildInGroup(c);
-        
+        g2.addChildInGroup(c2);
 
-        System.out.println(g2.getAllChildrenInGroup());
+        
+        System.out.println(allEmployees);
+        System.out.println(t2);
+        System.out.println(t2.getContractDate());
+        System.out.println(t2.getTeachingLevel());
+        System.out.println(s.getWorkingMethods());
+        s.setWorkingMethods("Nezinaams nezinams  NEzimansad");
+        System.out.println(s.getWorkingMethods());
+        
+          
 
         //Funkcija change and remove strādā
         //changeGroup(c, g1, g);
@@ -59,15 +74,23 @@ public class MainService {
         //TODO funkcijas strada, bet nav pilniigas
         //showAllTeachers();
         //showAllSpeachTherapists();
-        //TODO funkcija nestrada
-        s.addChildByPriority(c);
-        System.out.println(s.getAllChildrenAtSpeachLessons());
+        //Funkcija straadaa ar arraylist
+        //s.addChildByPriority(c1);
+        //s.removeChildFromAllCASL();
+        //ArrayList<Child> allC = new ArrayList<>();
+    
+        //s.setallCASL(allC);
+        //System.out.println(s.getallCASL());
+        //System.out.println(allC);
 
+        System.out.println(s.getallCASL());
+        subcribeChildInSpeachLessonsByChildPersonalCode("145456-54715", s);
+        System.out.println(s.getallCASL());
         //TODO funkcija strada, bet nav pilniiiga
         //showAllChildrenInGroup(g1);
         //Funkcija straada, bet prasa atjauninajumu
         //showAllChildrenByGroupStartYear((short)0);
-        sortChildrenInGroupBySurname(g2);
+        //sortChildrenInGroupBySurname(g2);
         //System.out.println(g2.getAllChildrenInGroup());
     }
     public static boolean addNewTeacher(String name, String surname, String personalCode, Date contractDate, TeachingLevel teachingLevel) {
@@ -193,7 +216,14 @@ public class MainService {
     }
 
     public static boolean subcribeChildInSpeachLessonsByChildPersonalCode(String personalCode, SpeachTherapist speachTherapist) {
-        
+        if(allEmployees.contains(speachTherapist)) {
+            for(Child child : allChildren) {
+                if(child.getPersonalCode() == personalCode) {
+                    speachTherapist.addChildByPriority(child);
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -219,7 +249,13 @@ public class MainService {
         }
     } 
     public void showAllChildrenInSpeachLessonBySpeachTherapistPersonalCode(String personalCode) {
-       
+       for(Employee speachTherapists : allEmployees) {
+           if(speachTherapists.getPersonalCode() == personalCode) {
+                if(speachTherapists instanceof SpeachTherapist) {
+                    
+                }
+           }
+       }
     }
     public static void showAllChildrenByGroupStartYear(short groupStartYear) {
         for(Group groups : allGroups) {
