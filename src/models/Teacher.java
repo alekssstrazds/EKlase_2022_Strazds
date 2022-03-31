@@ -3,11 +3,17 @@ import java.util.Date;
 
 public class Teacher extends Employee {
     private TeachingLevel teachingLevel;
-    //Get funkcijas
+    /**
+     * getTeachingLevel() funckija.
+     * @return
+     */
     public TeachingLevel getTeachingLevel() {
         return teachingLevel;
     }
-    //Set funkcijas
+    /**
+     * Ievieto teachingLevel enum mainīgo.
+     * @param teachingLevel
+     */
     public void setTeachingLevel(TeachingLevel teachingLevel) {
         if(teachingLevel != null) {
             this.teachingLevel = teachingLevel;
